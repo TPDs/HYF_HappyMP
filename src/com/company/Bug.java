@@ -29,13 +29,41 @@ public class Bug {
     //hvis 1 vej, gå vej
     //hvis 2 veje,
     public ArrayList wayCheck(int hPos, int vPos){
-        Wall temp = new Wall(hPos, vPos);
-        ArrayList<Bug> waysToGo = new ArrayList<>();
+        Boolean flagL = true;
+        Boolean flagR = true;
+        Boolean flagU = true;
+        Boolean flagD = true;
+        Wall left = new Wall(hPos-1, vPos);
+        Wall right = new Wall(hPos+1, vPos);
+        Wall up = new Wall(hPos, vPos+1);
+        Wall down = new Wall(hPos, vPos-1);
+        ArrayList<Wall> waysToGo = new ArrayList<>();
         for(Wall s:lab.wall){
-            if(s == temp){
-            } else {
-
+            if(s == left){
+                flagL = false;
+            }
+            if(s == right){
+                flagR = false;
+            }
+            if(s == up){
+                flagU = false;
+            }
+            if(s == down){
+                flagD = false;
             }
         }
+        if(flagL){
+            waysToGo.add(left);
+        }
+        if(flagR){
+            waysToGo.add(right);
+        }
+        if(flagU){
+            waysToGo.add(up);
+        }
+        if(flagD){
+            waysToGo.add(down);
+        }
+        return waysToGo;
     }
 }
