@@ -18,6 +18,22 @@ public class Bug {
     public Bug() {
     }
 
+    public int getHorizontal() {
+        return horizontal;
+    }
+
+    public void setHorizontal(int horizontal) {
+        this.horizontal = horizontal;
+    }
+
+    public int getVertical() {
+        return vertical;
+    }
+
+    public void setVertical(int vertical) {
+        this.vertical = vertical;
+    }
+
     public Bug start(Bug bug){
         if(bug == null){
             bug = new Bug();
@@ -28,17 +44,17 @@ public class Bug {
     //check for væg, hvor mange veje kan gås
     //hvis 1 vej, gå vej
     //hvis 2 veje,
-    public ArrayList wayCheck(int hPos, int vPos){
-        Boolean flagL = true;
-        Boolean flagR = true;
-        Boolean flagU = true;
-        Boolean flagD = true;
-        Wall left = new Wall(hPos-1, vPos);
-        Wall right = new Wall(hPos+1, vPos);
-        Wall up = new Wall(hPos, vPos+1);
-        Wall down = new Wall(hPos, vPos-1);
-        ArrayList<Wall> waysToGo = new ArrayList<>();
-        for(Wall s:lab.wall){
+    public ArrayList wayCheck(Bug bug){
+        boolean flagL = true;
+        boolean flagR = true;
+        boolean flagU = true;
+        boolean flagD = true;
+        Point left = new Point(bug.getHorizontal()-1, bug.getVertical());
+        Point right = new Point(bug.getHorizontal()+1, bug.getVertical());
+        Point up = new Point(bug.getHorizontal(), bug.getVertical()+1);
+        Point down = new Point(bug.getHorizontal(), bug.getVertical()-1);
+        ArrayList<Point> waysToGo = new ArrayList<>();
+        for(Point s:lab.wallList){
             if(s == left){
                 flagL = false;
             }
@@ -65,5 +81,34 @@ public class Bug {
             waysToGo.add(down);
         }
         return waysToGo;
+    }
+
+    public Bug move(ArrayList<Point> position, Bug bug){
+       for(int i = 0; i< position.size(); i++){
+           if(!mapmap.containsKey(position.get(i))){
+               mapmap.put(position.get(i), 0);
+           }
+       }
+
+        switch (position.size()){
+            case 1:
+                mapmap.get(position.get(0)).
+
+
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+        }
+
+       Point temp = new Point(bug.getHorizontal(), bug.getVertical());
+       mapmap.merge(temp,1,Integer::sum);
+       bug.setHorizontal();
+       bug.setVertical();
+       return bug;
     }
 }
