@@ -16,7 +16,7 @@ public class Lab {
         }
     }
 
-    public void initiateWall(int ind,int ud){
+    public void initiateWall(int ind, int ud){
         for(int i = 0; i<=11; i++){ wall.add(new Wall(0,i)); wall.add(new Wall(12,i));} //The sides
 
         for(int j = 0; j<=12; j++){
