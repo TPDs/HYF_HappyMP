@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.text.Position;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,16 +93,13 @@ public class Bug {
 
         switch (position.size()){
             case 1:
-                mapmap.get(position.get(0)).
-
-
-
+                move1(position, bug);
                 break;
             case 2:
-
+                move2(position, bug);
                 break;
             case 3:
-
+                move3(position, bug);
                 break;
         }
 
@@ -111,4 +109,24 @@ public class Bug {
        bug.setVertical();
        return bug;
     }
+
+    public Bug move1(ArrayList<Point> position, Bug bug){
+        bug.setVertical(position.get(0).getV());
+        bug.setHorizontal(position.get(0).getH());
+    }
+
+    public Bug move2(ArrayList<Point> position, Bug bug){
+        for(Point s : mapmap.keySet()){
+            if(s == position.get(0)){
+                mapmap.get(s).intValue();
+            }
+        }
+    }
+
+    public Bug move3(ArrayList<Point> position, Bug bug){
+
+    }
+
+
+
 }
