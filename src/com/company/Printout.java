@@ -5,20 +5,21 @@ import java.util.ArrayList;
 public class Printout{
       public void printMaze (ArrayList<Point> wallList, Bug bug){
           System.out.println(wallList.get(28).getH());
-        boolean flag;
+        boolean flag1,flag2;
         for(int i = 12; i >= 0; i--){
             if(i % 2 == 0) {
                 for (int j = 1; j < 12; j = j + 2) {
                     System.out.print("+");
                     Point temp = new Point(j, i);
-                    flag = false;
+                    flag1 = false;
                     for(Point s: wallList){
-                        if (s.equals(temp)) {
-                            flag = true;
+                        if (s.getV() == temp.getV() && s.getH()==temp.getV()) {
+                            flag1 = true;
                             break;
                         }
                     }
-                    if (flag) {
+
+                    if (flag1) {
                         System.out.print("---");
                     } else {
                         System.out.print("   ");
@@ -28,14 +29,14 @@ public class Printout{
             } else {
                 for (int k = 0; k < 12; k = k + 2) {
                     Point temp1 = new Point(k, i);
-                    flag = false;
-                    for(Point s : wallList){
-                        if (s.equals(temp1)) {
-                            flag = true;
+                    flag2 = false;
+                    for(Point e : wallList){
+                        if (e.getV() == temp1.getV() && e.getH() == temp1.getH()) {
+                            flag2 = true;
                             break;
                         }
                     }
-                    if (flag) {
+                    if (flag2) {
                         System.out.print("|");
                     } else {
                         System.out.print(" ");
