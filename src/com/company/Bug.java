@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.text.Position;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,16 +93,13 @@ public class Bug {
 
         switch (position.size()){
             case 1:
-                mapmap.get(position.get(0)).
-
-
-
+                move1(position, bug);
                 break;
             case 2:
-
+                move2(position, bug);
                 break;
             case 3:
-
+                move3(position, bug);
                 break;
         }
 
@@ -111,4 +109,62 @@ public class Bug {
        bug.setVertical();
        return bug;
     }
+
+    public Bug move1(ArrayList<Point> position, Bug bug){
+        bug.setVertical(position.get(0).getV());
+        bug.setHorizontal(position.get(0).getH());
+    }
+
+    public Bug move2(ArrayList<Point> position, Bug bug) {
+        int move1 = 0;
+        int move2 = 0;
+        for (Point s : mapmap.keySet()) {
+            if (s == position.get(0)) {
+                move1 = mapmap.get(s);
+            }
+            if (s == position.get(1)) {
+                move2 = mapmap.get(s);
+            }
+        }
+            if (move1 < move2) {
+                bug.setVertical(position.get(0).getV());
+                bug.setHorizontal(position.get(0).getH());
+                return bug;
+            } else {
+                bug.setVertical(position.get(1).getV());
+                bug.setHorizontal(position.get(1).getH());
+                return bug;
+            }
+        }
+
+    public Bug move3(ArrayList<Point> position, Bug bug){
+        int move1 = 0;
+        int move2 = 0;
+        int move3 = 0;
+        for (Point s : mapmap.keySet()) {
+            if (s == position.get(0)) {
+                move1 = mapmap.get(s);
+            }
+            if (s == position.get(1)) {
+                move2 = mapmap.get(s);
+            }
+            if (s == position.get(3)) {
+                move3 = mapmap.get(s);
+            }
+        }
+        if (move1 < move2) {
+            bug.setVertical(position.get(0).getV());
+            bug.setHorizontal(position.get(0).getH());
+            return bug;
+        } else if(move1 < move3) {
+            bug.setVertical(position.get(1).getV());
+            bug.setHorizontal(position.get(1).getH());
+            return bug;
+        } else if(move2 < move3){
+
+        }
+    }
+
+
+
 }
