@@ -1,17 +1,18 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Printout{
-    Lab lab;
-    Bug bug;
-    public void printMaze (){
+      public void printMaze (ArrayList<Point> wallList, Bug bug){
+
         boolean flag = false;
-        for(int i = 12; i <= 0; i = i - 2){
+        for(int i = 12; i >= 0; i--){
             if(i % 2 == 0) {
                 for (int j = 1; j < 12; j = j + 2) {
                     System.out.print("+");
                     Point temp = new Point(j, i);
                     flag = false;
-                    for(Point s:lab.wallList){
+                    for(Point s: wallList){
                         if(s == temp){
                             flag = true;
                         }
@@ -27,7 +28,7 @@ public class Printout{
                 for (int k = 0; k < 12; k = k + 2) {
                     Point temp1 = new Point(k, i);
                     flag = false;
-                    for(Point s:lab.wallList){
+                    for(Point s : wallList){
                         if(s == temp1){
                             flag = true;
                         }
