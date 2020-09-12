@@ -1,5 +1,6 @@
 package com.company;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
@@ -17,47 +18,61 @@ public class Main {
         start.initiateWall(3, 5);
         Printout print = new Printout();
         print.printMaze(start.wallList, bug);
-        int y = bug.getHorizontal();
-        int x = bug.getVertical();
-        boolean test = true;
+
         Scanner sc = new Scanner(System.in);
-        int key = sc.nextInt();
 
-        while (test) {
+        manuelControl(sc,bug,print,start);
+    }
 
-            switch (key) {
+        public static void manuelControl(Scanner sc,Bug bug,Printout print,Lab start) {
+            Point winner = new Point(9, 5);
 
-                case 1:
-                    bug.setHorizontal(y + 2);
-                    bug.setVertical(x);
-                    System.out.println(bug.getVertical() + " " + bug.getHorizontal());
-                    print.printMaze(start.wallList, bug);
-                    key = 0;
-                    break;
-                case 2:
-                    bug.setHorizontal(y - 2);
-                    bug.setVertical(x);
-                    System.out.println(bug.getVertical() + " " + bug.getHorizontal());
-                    print.printMaze(start.wallList, bug);
-                    key = 0;
-                    break;
-                case 3:
-                    bug.setVertical(x - 2);
-                    bug.setHorizontal(y);
-                    System.out.println(bug.getVertical() + " " + bug.getHorizontal());
-                    print.printMaze(start.wallList, bug);
-                    key = 0;
-                    break;
-                case 4:
-                    bug.setVertical(x + 2);
-                    bug.setHorizontal(y);
-                    System.out.println(bug.getVertical() + " " + bug.getHorizontal());
-                    print.printMaze(start.wallList, bug);
-                    key = 0;
-                    break;
+            while (sc.hasNext()) {
+                int y = bug.getHorizontal();
+                int x = bug.getVertical();
+                String key = sc.nextLine();
+                System.out.println(bug.getVertical()+ " "+ bug.getHorizontal());
+                if(bug.getHorizontal()==winner.getY()&& bug.getVertical()== winner.getX()) {
+                    System.out.println("WINNNNNERRR!!!!!!");
+                }
+                switch (key) {
 
+                    case "q":
+                        return;
+
+                    case "w":
+
+                        bug.setHorizontal(y);
+                        bug.setVertical(x+2);
+                        System.out.println("\n\n\n");
+                        print.printMaze(start.wallList, bug);
+
+                        break;
+                    case "s":
+                        bug.setHorizontal(y);
+                        bug.setVertical(x-2);
+                        System.out.println("\n\n\n");
+                        print.printMaze(start.wallList, bug);
+
+                        break;
+                    case "a":
+                        bug.setVertical(x);
+                        bug.setHorizontal(y-2);
+                        System.out.println("\n\n\n");
+                        print.printMaze(start.wallList, bug);
+
+                        break;
+                    case "d":
+                        bug.setVertical(x);
+                        bug.setHorizontal(y+2);
+                        System.out.println("\n\n\n");
+                        print.printMaze(start.wallList, bug);
+
+                        break;
+
+                }
             }
-        }
+
 
     }
 }
