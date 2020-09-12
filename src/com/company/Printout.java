@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Printout{
       public void printMaze (ArrayList<Point> wallList, Bug bug){
-
-        boolean flag = false;
+          System.out.println(wallList.get(28).getH());
+        boolean flag;
         for(int i = 12; i >= 0; i--){
             if(i % 2 == 0) {
                 for (int j = 1; j < 12; j = j + 2) {
@@ -13,8 +13,9 @@ public class Printout{
                     Point temp = new Point(j, i);
                     flag = false;
                     for(Point s: wallList){
-                        if(s == temp){
+                        if (s.equals(temp)) {
                             flag = true;
+                            break;
                         }
                     }
                     if (flag) {
@@ -29,8 +30,9 @@ public class Printout{
                     Point temp1 = new Point(k, i);
                     flag = false;
                     for(Point s : wallList){
-                        if(s == temp1){
+                        if (s.equals(temp1)) {
                             flag = true;
+                            break;
                         }
                     }
                     if (flag) {

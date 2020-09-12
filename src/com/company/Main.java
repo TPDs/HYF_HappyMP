@@ -8,7 +8,7 @@ public class Main {
         Bug bug = new Bug();
 
         bug.setHorizontal(3);
-        bug.setVertical(5);
+        bug.setVertical(1);
 
         bug.start(bug);
         start.initiateGrid();

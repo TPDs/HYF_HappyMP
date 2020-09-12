@@ -40,6 +40,6 @@ public class Lab {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(wallList.size());
+        System.out.println(wallList.get(53).getH() +" " + wallList.get(53).getV());
     }
 }
