@@ -25,14 +25,27 @@ public class Lab {
         } //The sides
 
         for (int j = 0; j <= 12; j++) {
-            if (j == ind || j == ud) {
-                continue;
-            } else
-                wallList.add(new Point(j, 0));
-            wallList.add(new Point(j, 12));
+            wallList.add(new Point(j, 0));
+            wallList.add(new Point(j, 10));
         } //The bottom and top
+
+
+        Point tempIn = new Point(ind, 0);
+        Point tempOut = new Point(ud, 10);
+        for (int i = 0; i < wallList.size(); i++) {
+            if (tempIn.getV() == wallList.get(i).getV() && tempIn.getH() == wallList.get(i).getH()) {
+                wallList.remove(i);
+                i--;
+            }
+            if (tempOut.getV() == wallList.get(i).getV() && tempOut.getH() == wallList.get(i).getH()) {
+                wallList.remove(i);
+                i--;
+            }
+        }
+
+
         try {
-            File file = new File("src\\labData.txt");
+            File file = new File("src/com/company/labData.txt");
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 wallList.add(new Point(sc.nextInt(), sc.nextInt()));
@@ -40,6 +53,8 @@ public class Lab {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(wallList.get(53).getH() +" " + wallList.get(53).getV());
+
+
     }
+
 }

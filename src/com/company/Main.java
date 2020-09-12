@@ -11,10 +11,7 @@ public class Main {
         bug.setVertical(1);
 
         bug.start(bug);
-        start.initiateGrid();
         start.initiateWall(3,5);
-        System.out.println("test");
-        System.out.println(start.wallList.size());
         Printout print = new Printout();
         print.printMaze(start.wallList,bug);
 
