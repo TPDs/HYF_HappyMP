@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Bug {
     private Lab lab;
 
-    int horizontal, vertical;
+    private int horizontal, vertical;
     HashMap<Point, Integer> mapmap = new HashMap<>();
 
     public Bug(int horizontal, int vertical) {

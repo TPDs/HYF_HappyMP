@@ -46,8 +46,7 @@ public class Printout {
                         System.out.print(" ");
                     }
                     Point temp2 = new Point(k + 1, i);
-                   // Point temp3 = new Point(bug.getHorizontal(), bug.getVertical());
-                    Point temp3 = new Point(11, 5);
+                    Point temp3 = new Point(bug.getHorizontal(), bug.getVertical());
                     if (temp2.getH() == temp3.getH() && temp2.getV() == temp3.getV()) {
                         System.out.print(ANSI_YELLOW+"[¤]"+ ANSI_GREEN);
                     } else {
