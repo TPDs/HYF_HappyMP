@@ -23,4 +23,11 @@ public class Point {
     public void setV(int v) {
         this.v = v;
     }
+
+
+    @Override
+    public boolean equals(Object other)
+    {
+        return other == this;
+    }
 }
