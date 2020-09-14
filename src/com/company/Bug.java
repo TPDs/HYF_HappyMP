@@ -82,7 +82,6 @@ public class Bug {
             down.setV(down.getV() - 1);
             waysToGo.add(down);
         }
-        System.out.println(waysToGo.size());
 
         move(waysToGo, bug);
     }
@@ -94,7 +93,6 @@ public class Bug {
 
             }
         }
-        System.out.println(mapmap.size());
         switch (position.size()) {
             case 1:
                 move1(position, bug);
@@ -116,8 +114,9 @@ public class Bug {
     }
 
     public Bug move1(ArrayList<Point> position, Bug bug) {
-        changePosition(bug);
-        changePosition(bug);
+        for (int i = 0; i < 4; i++){
+            changePosition(bug);
+        }
         bug.setVertical(position.get(0).getV());
         bug.setHorizontal(position.get(0).getH());
 
@@ -159,15 +158,12 @@ public class Bug {
         for (Point s : mapmap.keySet()) {
             if (s.equals(position.get(0))) {
                 move1 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
             if (s.equals( position.get(1))) {
                 move2 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
             if (s.equals( position.get(2))) {
                 move3 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
         }
 
@@ -200,19 +196,15 @@ public class Bug {
         for (Point s : mapmap.keySet()) {
             if (s.equals(position.get(0))) {
                 move1 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
             if (s.equals( position.get(1))) {
                 move2 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
             if (s.equals( position.get(2))) {
                 move3 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
             if (s.equals( position.get(3))) {
                 move4 = mapmap.get(s);
-                System.out.println(mapmap.get(s));
             }
         }
 

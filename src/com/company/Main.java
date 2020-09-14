@@ -48,16 +48,23 @@ public class Main {
         System.out.println("1: For Manuel control");
         System.out.println("2: For semi-auto control");
         System.out.println("3: For full-auto bug AI");
+        System.out.println("4: For timed full-auto");
         pick = sc.nextInt();
         print.printMaze(start.wallList, bug);
         switch (pick){
 
             case 1:
                 manuelControl(sc,bug,print,start);
+                break;
             case 2:
                 autoControl(bug, start, print, sc);
+                break;
             case 3:
                 fullAutoBug(bug, start, print, sc);
+                break;
+            case 4:
+                timedAutoBug(bug, start, print, sc);
+                break;
         }
 
 
@@ -85,6 +92,34 @@ public class Main {
                 steps++;
             }
             TimeUnit.MILLISECONDS.sleep(750);
+        }
+        String lock = sc.next();
+    }
+
+    public static void timedAutoBug(Bug bug, Lab start, Printout print, Scanner sc) throws InterruptedException {
+        Point winner = new Point(11,5);
+        boolean flag = true;
+        int steps = 0;
+        double timer = System.currentTimeMillis();
+        while (flag){
+            int y = bug.getHorizontal();
+            int x = bug.getVertical();
+            System.out.println("\n\n");
+            bug.wayCheck(start.wallList, bug);
+            print.printMaze(start.wallList, bug);
+            if(bug.getHorizontal() == winner.getY() && bug.getVertical() == winner.getX()){
+                System.out.println();
+                double elapsedTime = System.currentTimeMillis() - timer;
+                double elapsedTimeSec = elapsedTime/1000;
+                System.out.println("The Maze was completed.");
+                System.out.println("Time: " + elapsedTimeSec + " sec / " + elapsedTime + " ms");
+                System.out.println();
+                flag = false;
+            } else {
+                System.out.println("\n\n");
+                steps++;
+            }
+
         }
         String lock = sc.next();
     }
