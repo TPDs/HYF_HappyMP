@@ -66,10 +66,6 @@ public class Main {
         }
 
     }
-
-
-
-
         public static void manuelControl(Scanner sc,Bug bug,Printout print,Lab start) {
             Point winner = new Point(9, 5);
 
