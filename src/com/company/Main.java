@@ -16,6 +16,23 @@ public class Main {
         bug.setVertical(1);
         bug.start(bug);
         String maze = null;
+        final String ANSI_GREEN = "\u001B[32m";
+        final String ANSI_YELLOW = "\u001B[33m";
+        final String ANSI_RESET = "\u001B[0m";
+
+        System.out.println( ANSI_GREEN +" _    _                               ____                \n" +
+                "| |  | |                             |  _ \\               \n" +
+                "| |__| |  __ _  _ __   _ __   _   _  | |_) | _   _   __ _ \n" +
+                "|  __  | / _` || '_ \\ | '_ \\ | | | | |  _ < | | | | / _` |\n" +
+                "| |  | || (_| || |_) || |_) || |_| | | |_) || |_| || (_| |\n" +
+                "|_|  |_| \\__,_|| .__/ | .__/  \\__, | |____/  \\__,_| \\__, |\n" +
+                "               | |    | |      __/ |                 __/ |\n" +
+                "               |_|    |_|     |___/                 |___/ \n");
+
+        System.out.println(ANSI_YELLOW +"By Michael Petersen" + "," +  "Christian Haugaard og Mikkel Strand \n\n "+ANSI_RESET);
+
+
+
         System.out.println("Pick a maze:");
         System.out.println("Base maze from the assignment: 1");
         System.out.println("Michael's maze: 2");

@@ -6,6 +6,7 @@ public class Printout {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
 
+
     public void printMaze(ArrayList<Point> wallList, Bug bug) {
         boolean flag1, flag2;
 
