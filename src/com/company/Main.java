@@ -30,8 +30,6 @@ public class Main {
             case 1:
                 manuelControl(sc,bug,print,start);
             case 2:
-               // bug.wayCheck(start.wallList, bug);
-              //  print.printMaze(start.wallList, bug);
                 autoControl(bug, start, print, sc);
         }
 
@@ -55,6 +53,9 @@ public class Main {
             switch (key) {
                 case "a" :
                     bug.wayCheck(start.wallList, bug);
+                    System.out.println(bug.mapmap.keySet() + " Fra main call" );
+
+                    System.out.println(bug.mapmap.get(0) + " Fra main2 call" );
                     print.printMaze(start.wallList, bug);
                     break;
 

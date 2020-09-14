@@ -53,16 +53,16 @@ public class Bug {
         ArrayList<Point> waysToGo = new ArrayList<>();
 
         for (Point s : wallList) {
-            if (s.getH() == left.getH() && s.getV() == left.getV()) {
+            if (s.equals(left)) {
                 flagL = false;
             }
-            if (s.getH() == right.getH() && s.getV() == right.getV()) {
+            if (s.equals(right)) {
                 flagR = false;
             }
-            if (s.getH() == up.getH() && s.getV() == up.getV()) {
+            if (s.equals(up)) {
                 flagU = false;
             }
-            if (s.getH() == down.getH() && s.getV() == down.getV()) {
+            if (s.equals(down)) {
                 flagD = false;
             }
         }
@@ -90,7 +90,7 @@ public class Bug {
     public Bug move(ArrayList<Point> position, Bug bug) {
         for (int i = 0; i < position.size(); i++) {
             if (!mapmap.containsKey(position.get(i))) {
-                mapmap.merge(position.get(i), 0,Integer::sum);
+                mapmap.put(position.get(i), 0);
 
             }
         }
@@ -114,6 +114,7 @@ public class Bug {
 
     public Bug move1(ArrayList<Point> position, Bug bug) {
         changePosition(bug);
+        changePosition(bug);
         bug.setVertical(position.get(0).getV());
         bug.setHorizontal(position.get(0).getH());
 
@@ -124,11 +125,11 @@ public class Bug {
         int move1 = 0;
         int move2 = 0;
         for (Point s : mapmap.keySet()) {
-            if (s == position.get(0)) {
+            if (s.equals( position.get(0))) {
                 move1 = mapmap.get(s);
 
             }
-            if (s == position.get(1)) {
+            if (s.equals( position.get(1))) {
                 move2 = mapmap.get(s);
 
             }
@@ -153,15 +154,15 @@ public class Bug {
         int move2 = 0;
         int move3 = 0;
         for (Point s : mapmap.keySet()) {
-            if (s == position.get(0)) {
+            if (s.equals(position.get(0))) {
                 move1 = mapmap.get(s);
                 System.out.println(mapmap.get(s));
             }
-            if (s == position.get(1)) {
+            if (s.equals( position.get(1))) {
                 move2 = mapmap.get(s);
                 System.out.println(mapmap.get(s));
             }
-            if (s == position.get(3)) {
+            if (s.equals( position.get(2))) {
                 move3 = mapmap.get(s);
                 System.out.println(mapmap.get(s));
             }
