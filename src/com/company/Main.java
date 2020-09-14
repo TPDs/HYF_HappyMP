@@ -3,12 +3,13 @@ package com.company;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Lab start = new Lab();
         Bug bug = new Bug();
         bug.setHorizontal(3);
@@ -21,7 +22,8 @@ public class Main {
 
 
         System.out.println("1: For Manuel control");
-        System.out.println("2: For auto control");
+        System.out.println("2: For semi-auto control");
+        System.out.println("3: For full-auto bug AI");
         Scanner sc = new Scanner(System.in);
         int pick = sc.nextInt();
         print.printMaze(start.wallList, bug);
@@ -31,11 +33,37 @@ public class Main {
                 manuelControl(sc,bug,print,start);
             case 2:
                 autoControl(bug, start, print, sc);
+            case 3:
+                fullAutoBug(bug, start, print, sc);
         }
 
 
 
 
+    }
+
+    public static void fullAutoBug(Bug bug, Lab start, Printout print, Scanner sc) throws InterruptedException {
+        Point winner = new Point(11,5);
+        boolean flag = true;
+        int steps = 0;
+        while (flag){
+            int y = bug.getHorizontal();
+            int x = bug.getVertical();
+            System.out.println("\n\n");
+            bug.wayCheck(start.wallList, bug);
+            print.printMaze(start.wallList, bug);
+            if(bug.getHorizontal() == winner.getY() && bug.getVertical() == winner.getX()){
+                System.out.println();
+                System.out.println("The Maze was completed. Steps: " + steps);
+                System.out.println();
+                flag = false;
+            } else {
+                System.out.println("\n\n");
+                steps++;
+            }
+            TimeUnit.SECONDS.sleep(1);
+        }
+        String lock = sc.next();
     }
 
     public static void autoControl(Bug bug,Lab start,Printout print, Scanner sc){
@@ -115,6 +143,8 @@ public class Main {
 
                 }
             }
+
+
 
 
     }
