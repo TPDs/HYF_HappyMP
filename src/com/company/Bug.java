@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Bug {
+    //private Lab lab;
+
     private int horizontal, vertical;
     HashMap<Point, Integer> mapmap = new HashMap<>();
 
@@ -18,12 +20,15 @@ public class Bug {
     public int getHorizontal() {
         return horizontal;
     }
+
     public void setHorizontal(int horizontal) {
         this.horizontal = horizontal;
     }
+
     public int getVertical() {
         return vertical;
     }
+
     public void setVertical(int vertical) {
         this.vertical = vertical;
     }
@@ -48,16 +53,16 @@ public class Bug {
         ArrayList<Point> waysToGo = new ArrayList<>();
 
         for (Point s : wallList) {
-            if (s.getH() == left.getH() && s.getV() == left.getV()) {
+            if (s.equals(left)) {
                 flagL = false;
             }
-            if (s.getH() == right.getH() && s.getV() == right.getV()) {
+            if (s.equals(right)) {
                 flagR = false;
             }
-            if (s.getH() == up.getH() && s.getV() == up.getV()) {
+            if (s.equals(up)) {
                 flagU = false;
             }
-            if (s.getH() == down.getH() && s.getV() == down.getV()) {
+            if (s.equals(down)) {
                 flagD = false;
             }
         }
@@ -77,29 +82,17 @@ public class Bug {
             down.setV(down.getV() - 1);
             waysToGo.add(down);
         }
-        System.out.println(waysToGo.size());
 
         move(waysToGo, bug);
     }
 
-    public void move(ArrayList<Point> position, Bug bug) {
+    public Bug move(ArrayList<Point> position, Bug bug) {
+        for (int i = 0; i < position.size(); i++) {
+            if (!mapmap.containsKey(position.get(i))) {
+                mapmap.put(position.get(i), 0);
 
-        for (int i=0; i < position.size();i++) {
-            boolean addFlag=false;
-            int addInt;
-           if (mapmap.containsKey(position.get(i))) {
-               continue;
-           }
-            else {
-                addFlag = true;
-                addInt = i;
-               if (addFlag){ mapmap.put(position.get(addInt),0 );}
-           }
-
-
+            }
         }
-
-
         switch (position.size()) {
             case 1:
                 move1(position, bug);
@@ -110,11 +103,20 @@ public class Bug {
             case 3:
                 move3(position, bug);
                 break;
+            case 4:
+                move4(position, bug);
+                break;
         }
+
+      //  Point temp = new Point(bug.getHorizontal(), bug.getVertical());
+     //  mapmap.merge(temp, 1, Integer::sum);
+        return bug;
     }
 
     public Bug move1(ArrayList<Point> position, Bug bug) {
-        changePosition(bug);
+        for (int i = 0; i < 4; i++){
+            changePosition(bug);
+        }
         bug.setVertical(position.get(0).getV());
         bug.setHorizontal(position.get(0).getH());
 
@@ -125,13 +127,13 @@ public class Bug {
         int move1 = 0;
         int move2 = 0;
         for (Point s : mapmap.keySet()) {
-            if (s == position.get(0)) {
+            if (s.equals( position.get(0))) {
                 move1 = mapmap.get(s);
-                System.out.println(move1 + "Move 1");
+
             }
-            if (s == position.get(1)) {
+            if (s.equals( position.get(1))) {
                 move2 = mapmap.get(s);
-                System.out.println(move2+ "Move 2");
+
             }
         }
         if (move1 <= move2) {
@@ -154,18 +156,14 @@ public class Bug {
         int move2 = 0;
         int move3 = 0;
         for (Point s : mapmap.keySet()) {
-            if (s == position.get(0)) {
+            if (s.equals(position.get(0))) {
                 move1 = mapmap.get(s);
-
-
             }
-            if (s == position.get(1)) {
+            if (s.equals( position.get(1))) {
                 move2 = mapmap.get(s);
-
             }
-            if (s == position.get(3)) {
+            if (s.equals( position.get(2))) {
                 move3 = mapmap.get(s);
-
             }
         }
 
@@ -190,14 +188,52 @@ public class Bug {
 
     }
 
+    public Bug move4(ArrayList<Point> position, Bug bug) {
+        int move1 = 0;
+        int move2 = 0;
+        int move3 = 0;
+        int move4 = 0;
+        for (Point s : mapmap.keySet()) {
+            if (s.equals(position.get(0))) {
+                move1 = mapmap.get(s);
+            }
+            if (s.equals( position.get(1))) {
+                move2 = mapmap.get(s);
+            }
+            if (s.equals( position.get(2))) {
+                move3 = mapmap.get(s);
+            }
+            if (s.equals( position.get(3))) {
+                move4 = mapmap.get(s);
+            }
+        }
+
+        if (move1 <= move2 && move1 <= move3 && move1 <= move4) {
+            changePosition(bug);
+            bug.setVertical(position.get(0).getV());
+            bug.setHorizontal(position.get(0).getH());
+            return bug;
+        } else if (move2 <= move3 && move2 <= move4) {
+            changePosition(bug);
+            bug.setVertical(position.get(1).getV());
+            bug.setHorizontal(position.get(1).getH());
+            return bug;
+        } else if (move3 <= move4) {
+            changePosition(bug);
+            bug.setVertical(position.get(2).getV());
+            bug.setHorizontal(position.get(2).getH());
+            return bug;
+        } else {
+            changePosition(bug);
+            bug.setVertical(position.get(3).getV());
+            bug.setHorizontal(position.get(3).getH());
+            return bug;
+        }
+
+    }
+
     public void changePosition(Bug bug) {
         Point temp = new Point(bug.getHorizontal(), bug.getVertical());
-        System.out.println(mapmap.size());
-
-
-
         mapmap.merge(temp, 1, Integer::sum);
-
-
     }
 }

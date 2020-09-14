@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 public class Point {
     private int h, v;
 
@@ -26,8 +28,16 @@ public class Point {
 
 
     @Override
-    public boolean equals(Object other)
-    {
-        return other == this;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return h == point.h &&
+                v == point.v;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(h, v);
     }
 }

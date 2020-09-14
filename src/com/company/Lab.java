@@ -18,7 +18,7 @@ public class Lab {
         }
     }
 
-    public void initiateWall(int ind, int ud) {
+    public void initiateWall(int ind, int ud, String maze) {
         for (int i = 0; i <= 11; i++) {
             wallList.add(new Point(0, i));
             wallList.add(new Point(12, i));
@@ -45,7 +45,7 @@ public class Lab {
 
 
         try {
-            File file = new File("src/com/company/labData.txt");
+            File file = new File("src/com/company/"+ maze +".txt");
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 wallList.add(new Point(sc.nextInt(), sc.nextInt()));
