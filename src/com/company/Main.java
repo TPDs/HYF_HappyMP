@@ -15,17 +15,40 @@ public class Main {
         bug.setHorizontal(3);
         bug.setVertical(1);
         bug.start(bug);
-        start.initiateWall(3, 5);
+        String maze = null;
+        System.out.println("Pick a maze:");
+        System.out.println("Base maze from the assignment: 1");
+        System.out.println("Michael's maze: 2");
+        System.out.println("Christian's maze: 3");
+        System.out.println("Mikkel's maze: 4");
+        Scanner sc = new Scanner(System.in);
+        int pick = sc.nextInt();
+        switch (pick){
+            case 1:
+                maze = "LabData";
+                break;
+            case 2:
+                maze = "labMP";
+                break;
+            case 3:
+                maze = "lab3";
+                break;
+            case 4:
+                maze = "labStrand";
+                break;
+            default:
+                maze = "LabData";
+                break;
+        }
+        start.initiateWall(3, 5, maze);
         Printout print = new Printout();
         int y = bug.getHorizontal();
         int x = bug.getVertical();
 
-
         System.out.println("1: For Manuel control");
         System.out.println("2: For semi-auto control");
         System.out.println("3: For full-auto bug AI");
-        Scanner sc = new Scanner(System.in);
-        int pick = sc.nextInt();
+        pick = sc.nextInt();
         print.printMaze(start.wallList, bug);
         switch (pick){
 
@@ -61,7 +84,7 @@ public class Main {
                 System.out.println("\n\n");
                 steps++;
             }
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(750);
         }
         String lock = sc.next();
     }

@@ -105,6 +105,9 @@ public class Bug {
             case 3:
                 move3(position, bug);
                 break;
+            case 4:
+                move4(position, bug);
+                break;
         }
 
       //  Point temp = new Point(bug.getHorizontal(), bug.getVertical());
@@ -184,6 +187,54 @@ public class Bug {
             bug.setVertical(position.get(2).getV());
             bug.setHorizontal(position.get(2).getH());
 
+            return bug;
+        }
+
+    }
+
+    public Bug move4(ArrayList<Point> position, Bug bug) {
+        int move1 = 0;
+        int move2 = 0;
+        int move3 = 0;
+        int move4 = 0;
+        for (Point s : mapmap.keySet()) {
+            if (s.equals(position.get(0))) {
+                move1 = mapmap.get(s);
+                System.out.println(mapmap.get(s));
+            }
+            if (s.equals( position.get(1))) {
+                move2 = mapmap.get(s);
+                System.out.println(mapmap.get(s));
+            }
+            if (s.equals( position.get(2))) {
+                move3 = mapmap.get(s);
+                System.out.println(mapmap.get(s));
+            }
+            if (s.equals( position.get(3))) {
+                move4 = mapmap.get(s);
+                System.out.println(mapmap.get(s));
+            }
+        }
+
+        if (move1 <= move2 && move1 <= move3 && move1 <= move4) {
+            changePosition(bug);
+            bug.setVertical(position.get(0).getV());
+            bug.setHorizontal(position.get(0).getH());
+            return bug;
+        } else if (move2 <= move3 && move2 <= move4) {
+            changePosition(bug);
+            bug.setVertical(position.get(1).getV());
+            bug.setHorizontal(position.get(1).getH());
+            return bug;
+        } else if (move3 <= move4) {
+            changePosition(bug);
+            bug.setVertical(position.get(2).getV());
+            bug.setHorizontal(position.get(2).getH());
+            return bug;
+        } else {
+            changePosition(bug);
+            bug.setVertical(position.get(3).getV());
+            bug.setHorizontal(position.get(3).getH());
             return bug;
         }
 
